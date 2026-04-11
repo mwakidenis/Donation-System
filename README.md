@@ -19,7 +19,7 @@ Tech Charity is a platform designed to bridge the digital divide by facilitating
 
 ```mermaid
 ---  
-title: System Overview
+title: System Overview 
 ---
 graph TB
     Donor((Donor))
