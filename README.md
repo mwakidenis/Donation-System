@@ -3,7 +3,7 @@
 A modern web platform built with Next.js that enables charitable donations through M-Pesa integration, featuring a responsive dashboard for tracking donations and impact metrics.
 
 ## ✅Table of Contents 
-- [Overview](#overview)
+- [Overview](#overview) 
 - [Features](#features)
 - [System Architecture](#system-architecture)
 - [Getting Started](#getting-started)
