@@ -5,7 +5,7 @@ A modern web platform built with Next.js that enables charitable donations throu
 ## ✅Table of Contents 
 - [Overview](#overview) 
 - [Features](#features)
-- [System Architecture](#system-architecture) 
+- [System Architecture](#system-architecture)  
 - [Getting Started](#getting-started)
 - [Environment Setup](#environment-setup)
 - [API Documentation](#api-documentation) 
