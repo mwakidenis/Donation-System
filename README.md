@@ -1,4 +1,4 @@
-# 🚀Tech Charity Platform 
+# 🚀Tech Charity Platform  
 
 A modern web platform built with Next.js that enables charitable donations through M-Pesa integration, featuring a responsive dashboard for tracking donations and impact metrics.
 
