@@ -7,7 +7,7 @@ A modern web platform built with Next.js that enables charitable donations throu
 - [Features](#features)
 - [System Architecture](#system-architecture)  
 - [Getting Started](#getting-started)
-- [Environment Setup](#environment-setup)
+- [Environment Setup](#environment-setup) 
 - [API Documentation](#api-documentation)   
 - [Database Schema](#database-schema)
 - [M-Pesa Integration](#m-pesa-integration) 
