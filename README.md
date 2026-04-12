@@ -51,7 +51,7 @@ graph TB
 
 - 🌐 Responsive web interface
 - 💳 M-Pesa payment integration
-- 📊 Real-time donation tracking
+- 📊 Real-time donation tracking 
 - 📱 Mobile-first design
 - 🔒 Secure payment processing
 - 📈 Impact statistics dashboard
