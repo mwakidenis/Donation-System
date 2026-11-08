@@ -127,7 +127,7 @@ function PaymentForm() {
 
     if (!formData.mpesa_number.trim()) {
       setLoading(false);
-      setErrorMessage("Please enter your M-Pesa number");
+      setErrorMessage("Please enter your phone number");
       return;
     }
 
@@ -137,26 +137,20 @@ function PaymentForm() {
       return;
     }
 
-    // Enhanced Kenyan phone number validation
-    const kenyanPhoneNumberRegex =
-      /^(07\d{8}|01\d{8}|2547\d{8}|2541\d{8}|\+2547\d{8}|\+2541\d{8})$/;
-
-    if (!kenyanPhoneNumberRegex.test(formData.mpesa_number)) {
-      setLoading(false);
-      setErrorMessage("Please enter a valid Kenyan M-Pesa number (e.g., 0712345678 or +254712345678)");
-      return;
-    }
-
-    // Additional validation for M-Pesa specific prefixes
-    const cleanNumber = formData.mpesa_number.replace(/^\+/, '').replace(/^0/, '254');
-    const mpesaValidPrefixes = ['254701', '254702', '254703', '254704', '254705', '254706', '254707', '254708', '254709', '254710', '254711', '254712', '254713', '254714', '254715', '254716', '254717', '254718', '254719'];
-    const hasValidPrefix = mpesaValidPrefixes.some(prefix => cleanNumber.startsWith(prefix));
+    // Strip out common formatting characters like spaces, dashes, or parentheses
+    const cleanPhoneNumber = formData.mpesa_number.replace(/[\s\-\(\)]/g, '');
     
-    if (!hasValidPrefix) {
+    // International phone number validation: allows an optional leading '+' and 9 to 15 digits
+    const internationalPhoneRegex = /^\+?[1-9]\d{8,14}$/;
+
+    if (!internationalPhoneRegex.test(cleanPhoneNumber)) {
       setLoading(false);
-      setErrorMessage("Please enter a valid M-Pesa number (Safaricom network only)");
+      setErrorMessage("Please enter a valid international phone number (e.g., +254712345678 or 254712345678)");
       return;
     }
+
+    // Assign the cleaned number back to the payload to ensure standard formatting is sent
+    formData.mpesa_number = cleanPhoneNumber;
 
     const { data: stkData, error: stkError } = await sendStkPush(formData);
 
@@ -181,7 +175,7 @@ function PaymentForm() {
           <div className="overflow-hidden rounded-md bg-white">
             <div className="p-6 sm:p-10">
               <p className="mt-4 text-base text-gray-600">
-                Provide your name, mpesa number and amount to process donation.
+                Provide your name, phone number, and amount to process your donation.
               </p>
               <form onSubmit={handleSubmit} className="mt-4">
                 <div className="space-y-6">
@@ -208,7 +202,7 @@ function PaymentForm() {
                   </div>
                   <div>
                     <label className="text-base font-medium text-gray-900">
-                      M-Pesa Number
+                      Phone Number
                     </label>
                     <div className="relative mt-2.5">
                       <input
@@ -222,7 +216,7 @@ function PaymentForm() {
                             mpesa_phone: e.target.value,
                           })
                         }
-                        placeholder="e.g., 0712345678"
+                        placeholder="e.g., +254712345678"
                         className="block w-full rounded-md border border-gray-200 bg-white px-4 py-4 text-black placeholder-gray-500 caret-orange-500 transition-all duration-200 focus:border-orange-500 focus:outline-none focus:ring-orange-500"
                       />
                     </div>
@@ -275,4 +269,4 @@ function PaymentForm() {
   );
 }
 
-export default PaymentForm; 
+export default PaymentForm;
